@@ -3,7 +3,7 @@ layout: home
 ---
 # Redirection
 
----# 과제 Redirection
+# 과제 Redirection
 
 ## Redirection이란?
 
@@ -21,6 +21,9 @@ layout: home
 
 → redirection을 사용하여 출력과 입력의 방향을 지정해줌
 
+리다이렉션(Redirection)이란 말 그대로, 방향을 변경하는 것을 의미합니다. 리눅스에선 꼭 키보드로 표준 입력을 받거나 화면으로 표준 출력을 하는 것이아니라, 파일로 표준 입력을 받고, 파일로 표준 출력을 받는 등의 기능을 의미합니다. 리다이렉션을 이용하면 리눅스를 좀 더 자유롭고 편하게 사용할 수 있습니다.
+
+→ 출력과 에러가 너무 길어 파일로 저장하는게 편할 때 사용
 ### 입출력 리다이렉션
 
 
@@ -44,13 +47,30 @@ layout: home
 
 <img src ="https://file.notion.so/f/s/3783baea-44ea-499c-8c40-43314060821b/Untitled.png?id=75549ea9-c52a-4f82-a13c-addd297e66a9&table=block&spaceId=f7f5a27f-fb49-4dd8-8a47-1d1cb5901c61&expirationTimestamp=1683078403884&signature=IwTlLkUDZRCuowuINf0EfrndoKjr7g8p_W0R5bgYuo4&downloadName=Untitled.png">
 
-### 기타 리다이렉션 기호의 쓰임
+### 기타 예시
 
-- **명령 >& 파일명** : 명령이 실행된 표준 출력의 결과와 에러를 파일로 출력
-- **명령 >>& 파일명** : 명령이 실행된 표준 출력의 결과와 에러를 파일로 덧붙여 출력
-- **명령 >! 파일명** : 파일의 존재 유무와 상관없이 생성하고 명령이 실행된 표준 출력의 결과를 파일로 출력
-- **명령 >&! 파일명** : 파일의 존재 유무와 상관없이 생성하고 명령이 실행된 표준 출력의 결과와 에러를 파일로 출력
-- **명령 >>! 파일명** : 파일의 존재 유무와 상관없이 생성하고 파일에 덧붙여 출력
-- **명령 >>&! 파일명** : 파일의 존재 유무와 상관없이 생성하고 명령이 실행된 표준 출력의 결과와 에러를 파일에 덧붙여 출력
-- **명령A | 명령B** : 명령A의 출력을 명령B 입력으로 사용하여 실행
-- **명령A |& 명령B** : 명령A의 출력과 에러를 명령 B의 입력으로 사용하여 실행
+→ > 과 >>의 차이점
+→ >과 마찬가지로 표준 출력에 전달된 내용을 지정된 파일로 넘겨줌
+→ >는 기존의 내용을 삭제하고 덮어쓰지만 >>는 기존의 내용에 추가한다는 점
+
+Ex1) cat test1.txt의 결과를 test.txt로 저장한다. (표준 출력 리다이렉션)
+
+$cat test1.txt > test.txt
+
+Ex2) cat test1.txt를 실행했을 때 에러가 발생하면 err.txt로 저장한다. (표준 에러 리다이렉션)
+
+$cat test1.txt 2 > err.txt
+
+*표준 출력/에러 모두 리다이렉션을 하고 싶다면 파일명 앞에 &추가
+
+Ex) cat test1.txt >& test_err.txt
+
+Ex3) test1.txt의 내용을 sort명령어의 입력으로 받는다. (표준 입력 리다이렉션)
+
+$sort < test1.txt
+
+Ex4) cat test1.txt를 실행한 결과를 test1.log로 저장하고 에러가 발생하는 경우에도 test1.log로 저장한다.
+
+$cat test1.txt > test1.log 2 >&1
+
+ 
